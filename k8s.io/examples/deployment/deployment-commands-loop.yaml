@@ -16,4 +16,4 @@ spec:
         image: debian
         command: ["/bin/sh"]
         args: ["-c", "while true; do echo hello from deployment; sleep 10;done"]
-      restartPolicy: OnFailure
+      restartPolicy: Always
