@@ -9,4 +9,8 @@ spec:
   env:
     - name: DB_PORT
       value: "6379"
+  lifecycle:
+    postStart:
+      exec:
+        command: ["/bin/sh", "-c", "export hostname=`hostname` && curl -X POST -H 'Authorization: Bearer token' -H 'Content-type: application/json' --data '{\"channel\":\"general\",\"text\":\"'\"The pod has started: $hostname\"'\"}' https://slack.com/api/chat.postMessage"]
 
