@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: command-demo-loop-deployment
+  labels:
+    purpose: demonstrate-command-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: command-demo-loop
+    spec:
+      containers:
+      - name: command-demo-container
+        image: debian
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello from deployment; sleep 10;done"]
+      restartPolicy: OnFailure
